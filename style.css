@@ -1,0 +1,374 @@
+:root {
+    --primary-color: #F45D22;
+    --primary-dark: #c94511;
+    --text-color: #333;
+    --bg-color: #fff;
+    --border-color: #ddd;
+    --input-bg: #fff;
+    --pre-bg: #f5f5f5;
+    --pre-color: #333;
+    --fieldset-bg: #f9f9f9;
+    --error-color: #d32f2f;
+  }
+  
+  .dark {
+    --primary-color: #F45D22;
+    --primary-dark: #c94511;
+    --text-color: #e0e0e0;
+    --bg-color: #121212;
+    --border-color: #444;
+    --input-bg: #1e1e1e;
+    --pre-bg: #1e1e1e;
+    --pre-color: #e0e0e0;
+    --fieldset-bg: #252525;
+    --error-color: #f44336;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Inter, Roboto, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .toolbar h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .toolbar-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .content {
+    display: flex;
+    flex: 1;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .form {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1rem;
+    background-color: var(--fieldset-bg);
+  }
+  
+  legend {
+    padding: 0 0.5rem;
+    font-weight: 600;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-family: inherit;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+  }
+  
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  button {
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  button:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  button.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
+  
+  button.secondary:hover {
+    background-color: rgba(66, 133, 244, 0.1);
+  }
+
+  /* Add this to your existing CSS */
+.icon-button {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 1.5rem !important;
+    width: auto !important;
+    height: auto !important;
+    color: var(--text-color) !important;
+  }
+  
+  .icon-button:hover {
+    background: none !important;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .toolbar-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .preview {
+    flex: 2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .preview-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    gap: 0.5rem;
+  }
+  
+  .preview-tab {
+    padding: 0.5rem 0.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .preview-tab.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+  
+  .preview-content {
+    flex: 1;
+    position: relative;
+  }
+  
+  .code-preview, .visual-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: var(--pre-bg);
+    color: var(--pre-color);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+  }
+  
+  .code-preview {
+    display: none;
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .visual-preview {
+    display: block;
+  }
+  
+  .visual-preview img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .active {
+    display: block;
+  }
+  
+  .error-message {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+    }
+    
+    .form, .preview {
+      max-width: 100%;
+    }
+    
+    .toolbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .button-text {
+      display: none;
+    }
+    
+    .button-icon {
+      display: inline;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      padding: 2rem;
+    }
+  }
+  /* Add these new styles */
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .preview-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    display: flex;
+    background: var(--fieldset-bg);
+    border-radius: 6px;
+    padding: 0.25rem;
+    border: 1px solid var(--border-color);
+  }
+  
+  .action-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .action-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+  }
+  
+  .preview-tabs {
+    display: flex;
+    background: var(--fieldset-bg);
+    border-radius: 6px;
+    padding: 0.25rem;
+    border: 1px solid var(--border-color);
+  }
+  
+  .preview-tab {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .preview-tab.active {
+    background: var(--primary-color);
+    color: white;
+  }
+  
+  .preview-tab:not(.active):hover {
+    background: rgba(66, 133, 244, 0.1);
+  }
+  
+  /* Update the existing preview content styles */
+  .preview-content {
+    flex: 1;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .preview-content {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Remove the border from preview content inner elements */
+  .code-preview, .visual-preview {
+    border: none;
+    border-radius: 0;
+  }

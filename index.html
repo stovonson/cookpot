@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookpot MD</title>
+  <meta name="description" content="Generate beautiful markdown for your Minecraft modpack projects">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <header class="toolbar">
+      <h1>Cookpot MD</h1>
+      <div class="toolbar-actions">
+        <button id="toggleDark" class="icon-button" aria-label="Toggle dark mode">
+          <span class="button-icon">🌓</span>
+        </button>
+      </div>
+    </header>
+    
+    <main class="content">
+      <form class="form">
+        <fieldset>
+          <legend>Project Information</legend>
+          <div class="form-group">
+            <label for="name">Name*</label>
+            <input type="text" id="name" placeholder="Project Name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="tagline">Tagline</label>
+            <input type="text" id="tagline" placeholder="Short description or tagline">
+          </div>
+          
+          <div class="form-group">
+            <label for="description">Description*</label>
+            <textarea id="description" rows="3" placeholder="Project description" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="logo">Logo URL</label>
+            <input type="url" id="logo" placeholder="https://...">
+          </div>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Links</legend>
+          <div class="form-group">
+            <label for="modrinth">Modrinth Link</label>
+            <input type="url" id="modrinth" placeholder="https://modrinth.com/modpack/...">
+          </div>
+          
+          <div class="form-group">
+            <label for="kofi">Ko-Fi Link</label>
+            <input type="url" id="kofi" placeholder="https://ko-fi.com/...">
+          </div>
+          
+          <div class="form-group">
+            <label for="website">Website Link</label>
+            <input type="url" id="website" placeholder="https://...">
+          </div>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Additional Information</legend>
+          <div class="form-group">
+            <label for="updateNotes">Update Notes</label>
+            <textarea id="updateNotes" rows="3" placeholder="Details about the latest update"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" placeholder="e.g. stovonson">
+          </div>
+        </fieldset>
+      </form>
+
+      <section class="preview">
+        <div class="preview-header">
+          <h2>Preview</h2>
+          <div class="preview-actions">
+            <div class="preview-tabs">
+              <button class="preview-tab active" data-tab="visual">Visual</button>
+              <button class="preview-tab" data-tab="code">Markdown</button>
+            </div>
+            <div class="action-buttons">
+              <button type="button" id="copyBtn" class="icon-button">
+                <span class="button-icon">📋</span>
+              </button>
+              <button type="reset" id="resetBtn" class="icon-button">
+                <span class="button-icon">🔄</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="preview-content">
+          <div id="visualOutput" class="visual-preview active"></div>
+          <pre id="markdownOutput" class="code-preview"></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
