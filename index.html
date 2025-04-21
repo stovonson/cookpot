@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cookpot MD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cookpot</title>
   <meta name="description" content="Generate beautiful markdown for your Minecraft modpack projects">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="stockpot.svg">
 </head>
 <body>
   <div class="container">
     <header class="toolbar">
-      <h1>Cookpot MD</h1>
-      <div class="toolbar-actions">
-        <button id="toggleDark" class="icon-button" aria-label="Toggle dark mode">
-          <span class="button-icon">🌓</span>
-        </button>
-      </div>
+      <span>
+        <img src="stockpot-colored.svg" alt="Stockpot Logo" class="logo">
+        <h1>Cookpot</h1>
+      </span>
+      <button id="toggleDark" class="icon-button" aria-label="Toggle dark mode">
+        <span class="button-icon">🌓</span>
+      </button>
     </header>
     
     <main class="content">
@@ -30,17 +31,17 @@
           
           <div class="form-group">
             <label for="tagline">Tagline</label>
-            <input type="text" id="tagline" placeholder="Short description or tagline">
+            <input type="text" id="tagline" placeholder="e.g. Example is good">
           </div>
           
           <div class="form-group">
             <label for="description">Description*</label>
-            <textarea id="description" rows="3" placeholder="Project description" required></textarea>
+            <textarea id="description" rows="3" placeholder="Example is good because..." required></textarea>
           </div>
           
           <div class="form-group">
             <label for="logo">Logo URL</label>
-            <input type="url" id="logo" placeholder="https://...">
+            <input type="url" id="logo" placeholder="e.g. https://imgur.com/...">
           </div>
         </fieldset>
         
@@ -48,17 +49,22 @@
           <legend>Links</legend>
           <div class="form-group">
             <label for="modrinth">Modrinth Link</label>
-            <input type="url" id="modrinth" placeholder="https://modrinth.com/modpack/...">
+            <input type="url" id="modrinth" placeholder="e.g. https://modrinth.com/mod/your-mod-name">
+          </div>
+
+          <div class="form-group">
+            <label for="modrinth">CurseForge Link</label>
+            <input type="url" id="curseforge" placeholder="e.g. https://curseforge.com/minecraft/mc-mods/your-mod-name">
           </div>
           
           <div class="form-group">
-            <label for="kofi">Ko-Fi Link</label>
-            <input type="url" id="kofi" placeholder="https://ko-fi.com/...">
+            <label for="support">Support Link</label>
+            <input type="url" id="support" placeholder="e.g. a ko-fi or patreon link">
           </div>
           
           <div class="form-group">
             <label for="website">Website Link</label>
-            <input type="url" id="website" placeholder="https://...">
+            <input type="url" id="website" placeholder="e.g. https://your-mod-website.com">
           </div>
         </fieldset>
         
@@ -66,12 +72,12 @@
           <legend>Additional Information</legend>
           <div class="form-group">
             <label for="updateNotes">Update Notes</label>
-            <textarea id="updateNotes" rows="3" placeholder="Details about the latest update"></textarea>
+            <textarea id="updateNotes" rows="3" placeholder="e.g. details about your project's latest update"></textarea>
           </div>
           
           <div class="form-group">
             <label for="author">Author</label>
-            <input type="text" id="author" placeholder="e.g. stovonson">
+            <input type="text" id="author" placeholder="e.g. your name/team's name">
           </div>
         </fieldset>
       </form>
