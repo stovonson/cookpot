@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.push(
       '<details>',
       '<summary>Other</summary>',
-      '\n<img src="cookpot_46h.png" alt="Created with Cookpot" style="max-height: 46px; width: auto;">\n',
+      '\n<img src="https://github.com/stovonson/cookpot/blob/main/images/cookpot_46h.png?raw=true" alt="Created with Cookpot" style="max-height: 46px; width: auto;">\n',
       '</details>'
     );
     

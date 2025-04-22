@@ -361,3 +361,24 @@
     border: none;
     border-radius: 0;
   }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    gap: 0.5rem;
+  }
+
+  footer h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  a {
+    text-decoration: line;
+    color: var(--text-color);
+  }
