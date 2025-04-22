@@ -43,7 +43,7 @@
     flex-direction: column;
     min-height: 100vh;
     padding: 1rem;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
   }
   
@@ -72,6 +72,12 @@
   .logo {
     height: 32px;
     width: 32px;
+    vertical-align: middle;
+  }
+
+  .logo:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
   }
   
   .content {
@@ -329,7 +335,7 @@
   }
   
   .preview-tab {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     background: none;
     border: none;
     color: var(--text-color);

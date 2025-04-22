@@ -229,14 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.push(
       '<details>',
       '<summary>Versions</summary>',
-      `\nAvailable versions can be found [here](${website || '#'}/versions).\n`,
+      getVersionsText(modrinth, curseforge, website),
       '</details>'
     );
     
     sections.push(
       '<details>',
       '<summary>Other</summary>',
-      '\n<img src="https://github.com/stovonson/cookpot/blob/main/images/cookpot_46h.png?raw=true" alt="Created with Cookpot" style="max-height: 46px; width: auto;">\n',
+      '\n<p>README created with <a href="https://cookpot.top">Cookpot</a>.</p>\n',
       '</details>'
     );
     
@@ -248,6 +248,23 @@ document.addEventListener('DOMContentLoaded', () => {
                   .join('\n\n')
                   .replace(/\n{3,}/g, '\n\n')
                   .trim();
+  }
+
+  function getVersionsText(modrinth, curseforge, website) {
+    const hasModrinth = modrinth && isValidModrinthUrl(modrinth);
+    const hasCurseForge = curseforge && isValidCurseForgeUrl(curseforge);
+    
+    if (hasModrinth && hasCurseForge) {
+      return `\nAvailable versions can be found on [CurseForge](${curseforge}) or [Modrinth](${modrinth}).\n`;
+    } else if (hasModrinth) {
+      return `\nAvailable versions can be found on [Modrinth](${modrinth}).\n`;
+    } else if (hasCurseForge) {
+      return `\nAvailable versions can be found on [CurseForge](${curseforge}).\n`;
+    } else if (website && isValidUrl(website)) {
+      return `\nAvailable versions can be found [here](${website}/versions).\n`;
+    } else {
+      return `\nAvailable versions can be found on the project's download pages.\n`;
+    }
   }
 
   function isValidModrinthUrl(url) {
