@@ -84,9 +84,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     
-    [logoInput, modrinthInput, supportInput, websiteInput].forEach(input => {
+    modrinthInput.addEventListener('blur', () => validatePlatformUrl(modrinthInput, 'modrinth.com'));
+    curseforgeInput.addEventListener('blur', () => validatePlatformUrl(curseforgeInput, 'curseforge.com'));
+
+
+    [logoInput, supportInput, websiteInput].forEach(input => {
       input.addEventListener('blur', validateUrl);
     });
+  }
+
+  function validatePlatformUrl(input, requiredDomain) {
+    const url = input.value.trim();
+    
+    if (url === '') {
+      clearError(input);
+      return true;
+    }
+    
+    if (!isValidUrl(url)) {
+      showError(input, `Please enter a valid URL (starting with http:// or https://)`);
+      return false;
+    }
+    
+    if (!url.includes(requiredDomain)) {
+      showError(input, `Please enter a valid ${requiredDomain.split('.')[0]} URL`);
+      return false;
+    }
+    
+    clearError(input);
+    return true;
   }
 
   function toggleDarkMode() {
@@ -102,6 +128,29 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (url && !isValidUrl(url)) {
       showError(input, 'Please enter a valid URL (starting with http:// or https://)');
+    } else {
+      clearError(input);
+    }
+  }
+
+  function validateModrinthUrl(e) {
+    const input = e.target;
+    const url = input.value.trim();
+    
+    if (url && !url.includes('modrinth.com/')) {
+      showError(input, 'Please enter a valid Modrinth URL (should contain modrinth.com)');
+    } else {
+      clearError(input);
+    }
+    updateOutput();
+  }
+
+  function validateCurseForgeUrl(e) {
+    const input = e.target;
+    const url = input.value.trim();
+    
+    if (url && !url.includes('curseforge.com/')) {
+      showError(input, 'Please enter a valid CurseForge URL (should contain curseforge.com)');
     } else {
       clearError(input);
     }
@@ -123,15 +172,15 @@ document.addEventListener('DOMContentLoaded', () => {
     error.className = 'error-message';
     error.textContent = message;
     input.parentNode.appendChild(error);
-    input.setAttribute('aria-invalid', 'true');
+    input.classList.add('error');
   }
-
+  
   function clearError(input) {
     const error = input.parentNode.querySelector('.error-message');
     if (error) {
       error.remove();
     }
-    input.removeAttribute('aria-invalid');
+    input.classList.remove('error');
   }
 
   function getMarkdown() {
@@ -148,47 +197,65 @@ document.addEventListener('DOMContentLoaded', () => {
   
     if (!name) return '# Fill in the name to get started!';
   
+    const sections = [];
+    
+    sections.push('<center>');
+    if (logo) sections.push(`<img src="${logo}" alt="${name} Logo" style="max-height: 200px; width: auto;">`);
+    sections.push(`## ${name}`);
+    
     const badges = [
-      modrinth ? `[![Modrinth](https://github.com/intergrav/devins-badges/blob/v3/assets/compact/available/modrinth_46h.png?raw=true)](${modrinth})` : '',
-      curseforge ? `[![CurseForge](https://github.com/intergrav/devins-badges/blob/v3/assets/compact/available/curseforge_46h.png?raw=true)](${curseforge})` : '',
-      support ? `[![Support](https://github.com/intergrav/devins-badges/blob/v3/assets/compact/donate/generic-plural_46h.png?raw=true)](${support})` : '',
-      website ? `[![Website](https://github.com/intergrav/devins-badges/blob/v3/assets/compact-minimal/documentation/website_46h.png?raw=true)](${website})` : '',
-    ].filter(Boolean).join(' ');
+      (modrinth && isValidModrinthUrl(modrinth)) ? `[![Modrinth](https://github.com/intergrav/devins-badges/blob/v3/assets/compact/available/modrinth_46h.png?raw=true)](${modrinth})` : '',
+      (curseforge && isValidCurseForgeUrl(curseforge)) ? `[![CurseForge](https://github.com/intergrav/devins-badges/blob/v3/assets/compact/available/curseforge_46h.png?raw=true)](${curseforge})` : '',
+      (support && isValidUrl(support)) ? `[![Support](https://github.com/intergrav/devins-badges/blob/v3/assets/compact/donate/generic-plural_46h.png?raw=true)](${support})` : '',
+      (website && isValidUrl(website)) ? `[![Website](https://github.com/intergrav/devins-badges/blob/v3/assets/compact-minimal/documentation/website_46h.png?raw=true)](${website})` : '',
+    ].filter(Boolean);
+    
+    if (badges.length > 0) {
+      sections.push(badges.join(' '));
+    }
+    
+    if (tagline || description) {
+      sections.push(tagline ? `**${tagline}**${description ? ' ' + description : ''}` : description);
+    }
+    sections.push('</center>');
+    
+    if (updateNotes) {
+      sections.push('<details>',
+      '<summary>Updates</summary>',
+      `\n${updateNotes}\n`,
+      '</details>');
+    }
+    
+    sections.push(
+      '<details>',
+      '<summary>Versions</summary>',
+      `\nAvailable versions can be found [here](${website || '#'}/versions).\n`,
+      '</details>'
+    );
+    
+    sections.push(
+      '<details>',
+      '<summary>Other</summary>',
+      '\n<img src="cookpot_46h.png" alt="Created with Cookpot" style="max-height: 46px; width: auto;">\n',
+      '</details>'
+    );
+    
+    sections.push('<center>');
+    if (author) sections.push(`a ${author} production.`);
+    sections.push('</center>');
+    
+    return sections.filter(section => section.trim() !== '')
+                  .join('\n\n')
+                  .replace(/\n{3,}/g, '\n\n')
+                  .trim();
+  }
+
+  function isValidModrinthUrl(url) {
+    return isValidUrl(url) && url.includes('modrinth.com/');
+  }
   
-    return `
-  <center>
-  
-  ${logo ? `<img src="${logo}" alt="${name} Logo" style="max-height: 200px; width: auto;">` : ''}
-  
-  ## ${name}
-  
-  ${badges}
-  
-  ${tagline ? `**${tagline}**${description ? ' ' + description : ''}` : description}
-  
-  ${updateNotes ? `### Updates\n\n${updateNotes}` : ''}
-  
-  </center>
-  
-  <details>
-  <summary>Versions</summary>
-  
-  Available versions can be found [here](${website || '#'}/versions).
-  
-  </details>
-  
-  <details>
-  <summary>Other</summary>
-  
-  Thanks to [Devin's Badges](https://intergrav.github.io/devins-badges-docs/) for the buttons.
-  
-  </details>
-  
-  <center>
-  
-  ${author ? `a ${author} production.` : ''}
-  
-  </center>`;
+  function isValidCurseForgeUrl(url) {
+    return isValidUrl(url) && url.includes('curseforge.com/');
   }
 
   function updateOutput() {

@@ -253,6 +253,14 @@
     font-size: 0.875rem;
     margin-top: 0.25rem;
   }
+
+  input.error, textarea.error {
+    border-color: var(--error-color) !important;
+  }
+  
+  input:invalid, textarea:invalid {
+    border-color: var(--error-color);
+  }
   
   @media (max-width: 768px) {
     .content {
