@@ -386,6 +386,6 @@
   }
 
   a {
-    text-decoration: line;
+    text-decoration: underline;
     color: var(--text-color);
   }
