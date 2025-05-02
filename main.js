@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = [];
     
     sections.push('<center>');
-    if (logo) sections.push(`<img src="${logo}" alt="${name} Logo" style="max-height: 200px; width: auto;">`);
+    if (logo) sections.push(`<img src="${logo}" alt="${name} Logo" width="200px" height="200px">`);
     sections.push(`## ${name}`);
     
     const badges = [
@@ -257,9 +257,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hasModrinth && hasCurseForge) {
       return `\nAvailable versions can be found on [CurseForge](${curseforge}) or [Modrinth](${modrinth}).\n`;
     } else if (hasModrinth) {
-      return `\nAvailable versions can be found on [Modrinth](${modrinth}).\n`;
+      return `\nAvailable versions can be found on [Modrinth](${modrinth}/versions).\n`;
     } else if (hasCurseForge) {
-      return `\nAvailable versions can be found on [CurseForge](${curseforge}).\n`;
+      return `\nAvailable versions can be found on [CurseForge](${curseforge}/files).\n`;
     } else if (website && isValidUrl(website)) {
       return `\nAvailable versions can be found [here](${website}/versions).\n`;
     } else {
