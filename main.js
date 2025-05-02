@@ -257,11 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hasModrinth && hasCurseForge) {
       return `\nAvailable versions can be found on [CurseForge](${curseforge}) or [Modrinth](${modrinth}).\n`;
     } else if (hasModrinth) {
-      return `\nAvailable versions can be found on [Modrinth](${modrinth}/versions).\n`;
+      return `\nAvailable versions can be found on [Modrinth](${modrinth}versions).\n`;
     } else if (hasCurseForge) {
-      return `\nAvailable versions can be found on [CurseForge](${curseforge}/files).\n`;
+      return `\nAvailable versions can be found on [CurseForge](${curseforge}files).\n`;
     } else if (website && isValidUrl(website)) {
-      return `\nAvailable versions can be found [here](${website}/versions).\n`;
+      return `\nAvailable versions can be found [here](${website}versions).\n`;
     } else {
       return `\nAvailable versions can be found on the project's download pages.\n`;
     }
