@@ -69,9 +69,19 @@
     font-weight: 600;
   }
 
+  .toolbar a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 24px;
+  }
+
   .logo {
     height: 32px;
-    width: 32px;
+    width: auto;
   }
 
   .logo:hover {
