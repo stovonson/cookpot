@@ -15,28 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const markdownOutput = document.getElementById('markdownOutput');
   const visualOutput = document.getElementById('visualOutput');
 
-  const toggleDarkBtn = document.getElementById('toggleDark');
-  const copyBtn = document.getElementById('copyBtn');
-  const resetBtn = document.getElementById('resetBtn');
-  const previewTabs = document.querySelectorAll('.preview-tab');
 
-  
-  let isDarkMode = localStorage.getItem('darkMode') === 'true';
   let activeTab = 'visual';
-
   
-  initDarkMode();
   initTabSystem();
   updateOutput();
   setupEventListeners();
 
-  function initDarkMode() {
-    if (isDarkMode) {
-      document.body.classList.add('dark');
-    }
-    toggleDarkBtn.setAttribute('aria-pressed', isDarkMode);
-  }
-
+  const copyBtn = document.getElementById('copyBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const previewTabs = document.querySelectorAll('.preview-tab');
   function initTabSystem() {
     const savedTab = localStorage.getItem('activeTab');
     if (savedTab) {
@@ -72,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     inputs.forEach(input => input.addEventListener('input', debounce(updateOutput, 200)));
 
     
-    toggleDarkBtn.addEventListener('click', toggleDarkMode);
     copyBtn.addEventListener('click', copyMarkdown);
     resetBtn.addEventListener('click', resetForm);
 
@@ -113,13 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     clearError(input);
     return true;
-  }
-
-  function toggleDarkMode() {
-    isDarkMode = !isDarkMode;
-    document.body.classList.toggle('dark', isDarkMode);
-    localStorage.setItem('darkMode', isDarkMode);
-    toggleDarkBtn.setAttribute('aria-pressed', isDarkMode);
   }
 
   function validateUrl(e) {
